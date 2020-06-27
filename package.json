@@ -6,8 +6,13 @@
   "dependencies": {
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^9.1.0",
     "mysql": "^2.18.1",
-    "mysql2": "^2.1.0"
+    "mysql2": "^2.1.0",
+    "require-directory": "^2.1.1"
   },
   "devDependencies": {},
   "scripts": {
