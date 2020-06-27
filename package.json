@@ -1,0 +1,32 @@
+{
+  "name": "nad",
+  "version": "1.0.0",
+  "description": "Node.js 高级实战课程案例",
+  "main": "01-callback.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangding/nodejs-advanced-demo.git"
+  },
+  "keywords": [
+    "async",
+    "await",
+    "callback",
+    "promise"
+  ],
+  "author": "wangding",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wangding/nodejs-advanced-demo/issues"
+  },
+  "homepage": "https://github.com/wangding/nodejs-advanced-demo#readme"
+}
