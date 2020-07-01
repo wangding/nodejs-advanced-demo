@@ -2,7 +2,6 @@
   "name": "nad",
   "version": "1.0.0",
   "description": "Node.js 高级实战课程案例",
-  "main": "01-callback.js",
   "dependencies": {
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
@@ -12,9 +11,9 @@
     "koa-router": "^9.1.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
-    "require-directory": "^2.1.1"
+    "require-directory": "^2.1.1",
+    "sequelize": "^6.2.4"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "exit 0"
   },
