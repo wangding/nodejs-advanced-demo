@@ -2,9 +2,15 @@
 
 const log = console.log;
 
+console.time('ALL TASKS USE');
+
 function report(id, cost) {
   log(`#${id} task done. use ${cost} ms.\n`);
 }
+
+process.on('exit', () => {
+  console.timeEnd('ALL TASKS USE');
+});
 
 function task(id) {
   const start = Date.now();
@@ -16,14 +22,16 @@ function task(id) {
 }
 
 function fakeAsync(id, next) {
-  const start = Date.now();
+  const start = Date.now(),
+        delay = Math.random() * 1000;
+
   setTimeout(function() {
     const end = Date.now();
     log('fakeAsync use %dms', end-start);
     report(id, end-start);
     //return end-start;
-    next(end-start);
-  }, 100);
+    if(typeof next === 'function') next(end-start);
+  }, delay);
 }
 
 function readDir(id, next) {
@@ -35,14 +43,14 @@ function readDir(id, next) {
 
     const end = Date.now();
     report(id, end-start);
-    next(files);
+    if(typeof next === 'function') next(files);
   });
 }
 
 function getPage(id, next) {
   const start = Date.now(),
-        http  = require('http'),
-        addr  = 'http://sample.wangding.in/web/one-div.html';
+        http  = require('https'),
+        addr  = 'https://sample.wangding.in/web/one-div.html';
 
   http.get(addr, (res) => {
     let data = '';
@@ -52,7 +60,7 @@ function getPage(id, next) {
 
       const end = Date.now();
       report(id, end-start);
-      next(data);
+      if(typeof next === 'function') next(data);
     });
   });
 }
@@ -62,7 +70,7 @@ function readMysql(id, next) {
         sql   = 'show databases;',
         start = Date.now();
         con   = mysql.createConnection({
-          host: '192.168.133.144',
+          host: '127.0.0.1',
           user: 'root',
           password: 'ddd',
           database: 'mysql'
@@ -78,7 +86,7 @@ function readMysql(id, next) {
 
     const end = Date.now();
     report(id, end-start);
-    next(result);
+    if(typeof next === 'function') next(result);
   });
 }
 
@@ -87,23 +95,21 @@ function readMysql(id, next) {
 /*
 task(1);
 var data = fakeAsync(2);
-//readDir(3);
-//getPage(4);
-task(5);
 log(data);
+task(3);
 */
 
 task(1);
 fakeAsync(2, (data)=>{     // callback hell
-  log('get Data:', data);
+  log('GET-DATA:', data);
   readDir(3, (data) => {
-    log('get Data:', data);
+    log('GET-DATA:', data);
     getPage(4, (data) => {
-      log('get Data:', data);
+      log('GET-DATA:', data);
       readMysql(5, (data) => {
-        log('get Data:', data);
+        log('GET-DATA:', data);
         fakeAsync(6, (data) => {
-          log('get Data:', data);
+          log('GET-DATA:', data);
           task(7);
         });
       });

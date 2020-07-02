@@ -2,9 +2,15 @@
 
 const log = console.log;
 
+console.time('ALL TASKS USE');
+
 function report(id, cost) {
   log(`#${id} task done. use ${cost} ms.\n`);
 }
+
+process.on('exit', () => {
+  console.timeEnd('ALL TASKS USE');
+});
 
 function task(id) {
   const start = Date.now();
@@ -16,14 +22,16 @@ function task(id) {
 }
 
 function fakeAsync(id) {
-  const start = Date.now();
+  const start = Date.now(),
+        delay = Math.random() * 1000;
+
   return new Promise((resolve, reject) => {
     setTimeout(function() {
       const end = Date.now();
       log('fakeAsync use %dms', end-start);
       report(id, end-start);
       resolve(end-start);
-    }, 100);
+    }, delay);
   });
 }
 
@@ -44,10 +52,11 @@ function readDir(id) {
   });
 }
 
+/*
 function getPage(id) {
   const start = Date.now(),
-        http  = require('http'),
-        addr  = 'http://sample.wangding.in/web/one-div.html';
+        http  = require('https'),
+        addr  = 'https://sample.wangding.in/web/one-div.html';
 
   return new Promise((resolve, reject) => {
     http.get(addr, (res) => {
@@ -63,13 +72,30 @@ function getPage(id) {
     });
   });
 }
+*/
 
+function getPage(id) {
+  const start = Date.now(),
+        axios = require('axios'),
+        addr  = 'https://sample.wangding.in/web/one-div.html';
+
+  return axios
+    .get(addr)
+    .then((res) => {
+      log(res.data);
+      const end = Date.now();
+      report(id, end-start);
+      return res.data;
+    });
+}
+
+/*
 function readMysql(id) {
   const mysql = require('mysql'),
         sql   = 'show databases;',
         start = Date.now();
         con   = mysql.createConnection({
-          host: '192.168.133.144',
+          host: '127.0.0.1',
           user: 'root',
           password: 'ddd',
           database: 'mysql'
@@ -92,20 +118,41 @@ function readMysql(id) {
     });
   });
 }
+*/
+
+function readMysql(id) {
+  const mysql = require('mysql2'),
+        sql   = 'show databases;',
+        start = Date.now();
+        con   = mysql.createConnection({
+          host: '127.0.0.1',
+          user: 'root',
+          password: 'ddd',
+          database: 'mysql'
+        });
+
+  return con
+    .promise()
+    .query(sql)
+    .then(([rows, fields]) => {
+      log('Database');
+      log('------------------');
+      rows.forEach((row) => { log(row.Database); });
+      log('------------------');
+      con.end();
+
+      const end = Date.now();
+      report(id, end-start);
+      return rows;
+    });
+}
 
 /* ----------------------- */
 
-/*
-task(1);
-fakeAsync(2);
-readDir(3);
-getPage(4);
-task(5);
-*/
-
 task(1);
 fakeAsync(2)
-  .then((val) => { log('get Data:', val); return readDir(3); })
-  .then((val) => { log('get Data:', val); return getPage(4); })
-  .then((val) => { log('get Data:', val); return readMysql(5); })
-  .then((val) => { log('get Data:', val); return task(6); });
+  .then((data) => { log('GET-DATA:', data); return readDir(3); })
+  .then((data) => { log('GET-DATA:', data); return getPage(4); })
+  .then((data) => { log('GET-DATA:', data); return readMysql(5); })
+  .then((data) => { log('GET-DATA:', data); return fakeAsync(6); })
+  .then((data) => { log('GET-DATA:', data); return task(7); });

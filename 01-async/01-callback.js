@@ -2,9 +2,15 @@
 
 const log = console.log;
 
+console.time('ALL TASKS USE');
+
 function report(id, cost) {
   log(`#${id} task done. use ${cost} ms.\n`);
 }
+
+process.on('exit', () => {
+  console.timeEnd('ALL TASKS USE');
+});
 
 function task(id) {
   const start = Date.now();
@@ -40,8 +46,8 @@ function readDir(id) {
 
 function getPage(id) {
   const start = Date.now(),
-        http  = require('http'),
-        addr  = 'http://sample.wangding.in/web/one-div.html';
+        http  = require('https'),
+        addr  = 'https://sample.wangding.in/web/one-div.html';
 
   http.get(addr, (res) => {
     let data = '';
@@ -60,7 +66,7 @@ function readMysql(id) {
         sql   = 'show databases;',
         start = Date.now();
         con   = mysql.createConnection({
-          host: '192.168.133.144',
+          host: '127.0.0.1',
           user: 'root',
           password: 'ddd',
           database: 'mysql'
@@ -86,4 +92,5 @@ fakeAsync(2);
 readDir(3);
 getPage(4);
 readMysql(5);
-task(6);
+fakeAsync(6);
+task(7);

@@ -2,9 +2,15 @@
 
 const log = console.log;
 
+console.time('ALL TASKS USE');
+
 function report(id, cost) {
   log(`#${id} task done. use ${cost} ms.\n`);
 }
+
+process.on('exit', () => {
+  console.timeEnd('ALL TASKS USE');
+});
 
 function task(id) {
   const start = Date.now();
@@ -17,13 +23,15 @@ function task(id) {
 
 /*
 function fakeAsync(id) {
-  const start = Date.now();
+  const start = Date.now(),
+        delay = Math.random() * 1000;
+
   setTimeout(function() {
     const end = Date.now();
     log('fakeAsync use %dms', end-start);
     report(id, end-start);
     task(id+1);      // method 1
-  }, 100);
+  }, delay);
 }
 */
 
@@ -36,7 +44,7 @@ function fakeAsync(id, next) {
     const end = Date.now();
     log('fakeAsync use %dms', end-start);
     report(id, end-start);
-    next();
+    if(typeof next === 'function') next();
   }, delay);
 }
 
@@ -49,14 +57,14 @@ function readDir(id, next) {
 
     const end = Date.now();
     report(id, end-start);
-    next();
+    if(typeof next === 'function') next();
   });
 }
 
 function getPage(id, next) {
   const start = Date.now(),
-        http  = require('http'),
-        addr  = 'http://sample.wangding.in/web/one-div.html';
+        http  = require('https'),
+        addr  = 'https://sample.wangding.in/web/one-div.html';
 
   http.get(addr, (res) => {
     let data = '';
@@ -66,7 +74,7 @@ function getPage(id, next) {
 
       const end = Date.now();
       report(id, end-start);
-      next();
+      if(typeof next === 'function') next();
     });
   });
 }
@@ -76,7 +84,7 @@ function readMysql(id, next) {
         sql   = 'show databases;',
         start = Date.now();
         con   = mysql.createConnection({
-          host: '192.168.133.144',
+          host: '127.0.0.1',
           user: 'root',
           password: 'ddd',
           database: 'mysql'
@@ -92,14 +100,11 @@ function readMysql(id, next) {
 
     const end = Date.now();
     report(id, end-start);
-    next();
+    if(typeof next === 'function') next();
   });
 }
 
 /* ----------------------- */
-
-//task(1);
-//fakeAsync(2, task);
 
 task(1);
 fakeAsync(2, ()=>{     // callback hell

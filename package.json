@@ -4,7 +4,9 @@
   "description": "Node.js 高级实战课程案例",
   "main": "01-callback.js",
   "dependencies": {
-    "mysql": "^2.18.1"
+    "axios": "^0.19.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0"
   },
   "devDependencies": {},
   "scripts": {
