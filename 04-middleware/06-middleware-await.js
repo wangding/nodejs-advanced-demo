@@ -1,29 +1,20 @@
 #!/usr/bin/env node
 
-const Koa     = require('koa'),
-      bigTask = require('./lib/task');
+const Koa = require('koa'),
+      fakeAsync = require('./lib/task');
+
 const app = new Koa(),
       log = console.log;
 
-app.use(async (ctx, next) => {
-  log('A1');
+app.use(async(ctx, next) => {
   const start = Date.now();
-
   await next();
-
   const end  = Date.now();
   log(`${ctx.method} ${ctx.path} - ${end-start}ms`);
-  log('A2');
 });
 
 app.use(async(ctx, next) => {
-  log('B1');
-  ctx.body = 'hello koa!';
-  await bigTask();
-
-  await next();
-
-  log('B2');
+  ctx.body = 'hello world! ' + await fakeAsync(1) + 'ms';
 });
 
 app.listen(8080);
