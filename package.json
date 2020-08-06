@@ -7,13 +7,16 @@
     "cheerio": "^1.0.0-rc.3",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
+    "koa-json": "^2.0.2",
     "koa-logger": "^3.2.1",
     "koa-router": "^9.1.0",
     "koa2-cors": "^2.0.6",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "require-directory": "^2.1.1",
-    "sequelize": "^6.2.4"
+    "sequelize": "^6.3.4",
+    "sequelize-auto": "^0.5.3",
+    "sequelize-automate": "^1.2.2"
   },
   "scripts": {
     "test": "exit 0"
