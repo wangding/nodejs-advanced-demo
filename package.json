@@ -9,6 +9,7 @@
     "koa-bodyparser": "^4.3.0",
     "koa-logger": "^3.2.1",
     "koa-router": "^9.1.0",
+    "koa2-cors": "^2.0.6",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "require-directory": "^2.1.1",
