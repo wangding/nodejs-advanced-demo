@@ -1,0 +1,147 @@
+.search-banner {
+  height: 100px;
+  background-image: url(/com/search/search-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.search-banner .container {
+  position: relative;
+  overflow: visible;
+}
+
+.search-input-form {
+  height: 50px;
+  margin: 0 auto;
+  width: 730px;
+  font-size: 0;
+  top: 25px;
+  position: relative;
+}
+
+.search-input-form input {
+  height: 50px;
+  line-height: 50px;
+  vertical-align: top;
+  border: none;
+  width: 450px;
+  outline: none;
+  font-size: 15px;
+  letter-spacing: 0;
+  padding-left: 50px;
+  padding-right: 20px;
+  background-image: url(/com/search/search.png);
+  background-position: 20px 16px;
+  background-repeat: no-repeat;
+}
+
+.search-btn-1 {
+  width: 140px;
+  height: 50px;
+  background-color: #FD113A;
+  font-size: 16px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  display: inline-block;
+  line-height: 50px;
+  text-align: center;
+}
+
+.search-btn-2 {
+  width: 140px;
+  height: 50px;
+  background-color: #FF8950;
+  font-size: 16px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  display: inline-block;
+  line-height: 50px;
+  text-align: center;
+}
+
+.search-font {
+  font-size: 12px;
+  color: #303030;
+  letter-spacing: 1.5px;
+  position: absolute;
+  top: 25px;
+  line-height: 20px;
+  left: 1000px;
+}
+
+.search-btn-logo {
+  height: 11px;
+  width: 23px;
+  margin-right: 5px;
+}
+
+.search-list {
+  position: absolute;
+  width: 450px;
+  left: 0;
+  top: 50px;
+  border: 1px solid #EDEDED;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+  background-color: #fff;
+  z-index: 998;
+}
+
+.search-list-item {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+  display: block;
+  overflow: hidden;
+}
+
+.search-list-item:hover .search-list-content {
+  border-top: 1px dashed #fff;
+}
+
+.search-list-item:hover + .search-list-item .search-list-content {
+  border-top: 1px dashed #fff;
+}
+
+.search-list-item:hover {
+  background-color: #FFEEF1;
+}
+
+.search-list-content {
+  border-top: 1px dashed #D9D9D9;
+  font-size: 14px;
+  color: #303030;
+  letter-spacing: 0;
+}
+
+.search-list-item.active .search-list-content {
+  border-top: 1px dashed #fff;
+}
+
+.search-list-item.active + .search-list-item .search-list-content {
+  border-top: 1px dashed #fff;
+}
+
+.search-list-item.active {
+  background-color: #FFEEF1;
+}
+
+.search-list-item:first-child .search-list-content {
+  border-top: none;
+}
+
+.search-list-content span.left {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.search-list-content span.red {
+  color: #FD1C43;
+}
+
+.search-list-content .search-list-right {
+  float: right;
+  color: #999999;
+}

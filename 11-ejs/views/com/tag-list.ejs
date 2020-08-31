@@ -1,10 +1,40 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>卡通屋</title>
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>卡通屋，<%= title %></p>
-  </body>
-</html>
+<section class="container-fluid bg-gray">
+  <div class="container">
+    <figure class="cat-filter">
+      <dl id="tags" class="cat-list">
+          <dt>题  材:</dt>
+          <dd><a class="active" href="/mh-list/" reg-field="cat" ref-val="0">全部</a></dd>
+          <% for(let i=0; i<tags.length; i++) {%>
+          <dd><a href="/mh-list/" reg-field="cat" ref-val="<%= tags[i].id %>"><%= tags[i].tag_name %></a></dd>
+          <% } %>
+      </dl>
+      <div class="field-wrap">
+        <dl id="areas" class="field-list">
+          <dt>地  区:</dt>
+          <dd><a class="active" href="/mh-list/" reg-field="field1" ref-val="0">全部</a></dd>
+          <% for(let i=0; i<areas.length; i++) {%>
+          <dd><a href="/manhua-hktw/" data-id="35" reg-field="field1" ref-val="1"><%= areas[i].area_name %></a></dd>
+          <% } %>
+        </dl>
+        <dl id="status" class="field-list">
+          <dt>进 度:</dt>
+          <dd><a class="active" href="/mh-list/" reg-field="field1" ref-val="1">全部</a></dd>
+          <dd><a href="/manhua-shaonan/" data-id="1" reg-field="field1" ref-val="1">连载</a></dd>
+          <dd><a href="/manhua-shaonv/" data-id="2" reg-field="field1" ref-val="1">完结</a></dd>
+        </dl>
+        <dl id="indexname" class="field-list">
+          <dt>字 母:</dt>
+          <dd><a class="active" href="/mh-list/" reg-field="field1" ref-val="1">全部</a></dd>
+          <% for(let i=0; i<26; i++) {%>
+          <dd><a href="/manhua-a/" data-id="<%= String.fromCharCode('A'.charCodeAt() + i) %>" reg-field="field1" ref-val="1"><%= String.fromCharCode('A'.charCodeAt() + i) %></a></dd>
+          <% } %>
+          <dd><a href="/manhua-0-9/" data-id="0-9" reg-field="field1" ref-val="1">0-9</a></dd>
+        </dl>
+      </div>
+      <span class="footer-btn">
+        <span>收起选项</span>
+        <i class="icon icon-arrow-up"></i>
+      </span>
+    </figure>
+  </div>
+</section>

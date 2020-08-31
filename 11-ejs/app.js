@@ -20,6 +20,8 @@ app.use(jwt({ secret: JWT_SECRET_KEY })
       /^\/api\/admins\/login$/,
       /^\/$/, /^\/mh/,
       /^\/css\//,
+      /^\/com\//,
+      /^\/font\//,
       /^\/js\//,
       /^\/img\//
     ] }));

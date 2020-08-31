@@ -1,3 +1,29 @@
-h1 {
-  color: green;
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.container-fluid {
+  width: 100%;
+  min-width: 1200px;
+  overflow: hidden;
+}
+
+.container:after, .container:before {
+  content: ' ';
+  display: table;
+}
+
+.container:after {
+  clear: both;
+}
+
+.container-fluid:after, .container-fluid:before {
+  content: ' ';
+  display: table;
+}
+
+.container-fluid:after {
+  clear: both;
 }

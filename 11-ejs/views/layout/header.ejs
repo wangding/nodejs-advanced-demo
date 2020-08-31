@@ -6,7 +6,35 @@
     <% } else { %>
     <title><%= title %>_卡通屋</title>
     <% } %>
+    <link rel="stylesheet" href="/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="/com/header/header.css" type="text/css">
+    <link rel="stylesheet" href="/com/search/search.css" type="text/css">
     <link rel="stylesheet" href="/css/common.css" type="text/css">
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/wangding/i@master/favicon.ico" sizes="48x48" type="image/png">
+    <% if(title === '漫画大全') { %>
+    <link rel="stylesheet" href="/com/tag-list/tag-list.css" type="text/css">
+    <% } %>
   </head>
   <body>
-    <h1>header ui component</h1>
+    <header class="header container-fluid ">
+      <div class="container">
+        <!-- logo -->
+        <a href="/">
+          <img class="header-logo" src="/com/header/header-logo.png">
+        </a>
+        <!-- 导航 -->
+        <ul class="header-title">
+          <li><a href="/" class="<%= title === '首页'? 'active': '' %>">首页</a></li>
+          <li><a href="/mh-new/" class="<%= title === '最近更新漫画'? 'active': '' %>">更新</a></li>
+          <li><a href="/mh-rank/" class="<%= title === '漫画榜单'? 'active': '' %>">排行</a></li>
+          <li><a href="/mh-jp/" class="<%= title === '日本漫画'? 'active': '' %>">日漫</a></li>
+          <li><a href="/mh-list/" class="<%= title === '漫画大全'? 'active': '' %>">列表</a></li>
+        </ul>
+        <!-- 登录 -->
+        <div class="header_login hover">
+          <a href="javascript:void(0);" class="js_header_login_btn">
+            <img data-isload="0" class="header-logo" src="/com/header/mrtx.gif">
+          </a>
+        </div>
+      </div>
+    </header>

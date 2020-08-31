@@ -1,4 +1,5 @@
-const router  = require('koa-router')();
+const router  = require('koa-router')(),
+      { Tag, Area } = require('../models');
 
 router.get('/', async (ctx) => {
   await ctx.render('index', { title: '首页' });
@@ -17,7 +18,14 @@ router.get('/mh-jp/', async (ctx) => {
 });
 
 router.get('/mh-list/', async (ctx) => {
-  await ctx.render('list', { title: '漫画大全' });
+  let tags  = await Tag.findAll({ order: [['id']] });
+  let areas = await Area.findAll({ order: [['id']] });
+
+  await ctx.render('list', {
+    title: '漫画大全',
+    tags:  tags,
+    areas: areas
+  });
 });
 
 module.exports = router;

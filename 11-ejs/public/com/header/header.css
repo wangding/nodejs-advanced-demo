@@ -1,0 +1,44 @@
+.header {
+  height: 74px;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: #fff;
+  border-bottom: 1px solid #f3f3f3;
+  transition: background-color .5s;
+}
+
+.header-logo {
+  margin-top: 16px;
+  float: left;
+}
+
+.header-title {
+  float: left;
+  margin-left: 30px;
+}
+
+.header-title li {
+  float: left;
+  height: 74px;
+  line-height: 74px;
+  width: 58px;
+  text-align: center;
+}
+
+.header-title li a {
+  font-size: 18px;
+  color: #252525;
+}
+
+.header-title li a.active {
+  color: #FD113A;
+}
+
+.header-title li a:hover {
+  color: #FD113A;
+}
+
+.header_login.hover{
+  float: right;
+}
