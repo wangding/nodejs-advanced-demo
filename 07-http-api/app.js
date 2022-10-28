@@ -7,7 +7,7 @@ const Koa    = require('koa'),
 
 const app    = new Koa();
 
-app.use(cors({ origin: '*', methods: 'GET,PUT,POST,DELETE'  }));
+app.use(cors());
 app.use(bodyparser({ enableTypes: ['json', 'form', 'text']  }));
 loadRouters(module, './routes', {visit: (r)=>{
   app.use(r.routes());
