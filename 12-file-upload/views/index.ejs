@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>file upload</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>picture upload</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" multiple name="file" />
+      <input type="submit" value="upload" />
+    </form>
+    <div>
+      <% for(let i=0; i<pictures.length; i++) {%>
+      <img src="<%= 'upload/' + pictures[i] %>">
+      <%}%>
+    </div>
+  </body>
+</html>
