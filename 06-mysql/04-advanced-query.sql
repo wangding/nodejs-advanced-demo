@@ -54,9 +54,9 @@ on ab.author_id = a.id;
 -- 多表联合查询 join，子查询
 select a.area_name, an.count
 from (
-	select area_id, count(id) as count
-	from books
-	group by area_id) as an
+  select area_id, count(id) as count
+  from books
+  group by area_id) as an
 join areas as a
 on a.id = an.area_id
 order by a.id;
@@ -65,12 +65,12 @@ order by a.id;
 -- 多表联合查询，子查询，分组汇总
 select bk.id, bk.unique_id, bk.book_name, bk.area_name, group_concat(bk.author_name separator ', ') as author_name
 from (
-	select b.id, ar.area_name, unique_id, book_name, a.author_name
-	from books as b
-	join author_books as ab
-	on b.id = ab.book_id
-	join authors as a
-	on ab.author_id = a.id
+  select b.id, ar.area_name, unique_id, book_name, a.author_name
+  from books as b
+  join author_books as ab
+  on b.id = ab.book_id
+  join authors as a
+  on ab.author_id = a.id
   join areas as ar
   on b.area_id = ar.id) as bk
 group by bk.id;
